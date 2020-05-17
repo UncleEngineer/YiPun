@@ -344,12 +344,14 @@ def ReplaceVocab(event=None):
 		fw = csv.writer(f)
 		fw.writerows(data)
 	UpdateVocab()
+	CountVocab()
 
 def UpdateMeaningVocab(vocab,trans):
 	global allvocabdict
 	allvocabdict[vocab] = trans
 	ReplaceVocab()
 	UpdateVocab()
+	CountVocab()
 
 
 
@@ -417,10 +419,13 @@ def UpdateVocabUI(event=None):
 	except:
 		messagebox.showwarning('Please Select Vocab','กรุณาเลือกคำศัพท์ที่ต้องการแก้ไขก่อน')
 
-
-L1 = ttk.Label(F2,text='คำศัพท์ทั้งหมด',font=('Angsana New',20)).place(x=50,y=30)
+v_countvocab = StringVar()
+L1 = ttk.Label(F2,text='คำศัพท์ทั้งหมด:',font=('Angsana New',20)).place(x=50,y=30)
+L1 = ttk.Label(F2,textvariable=v_countvocab,font=('Angsana New',20)).place(x=200,y=30)
 L2 = ttk.Label(F2,text='ดับเบิลคลิกเพื่อฟังเสียง',font=('Angsana New',15)).place(x=50,y=600)
 header = ['Vocab','Translation']
+
+
 
 vocablist = ttk.Treeview(F2, columns=header, show='headings',height=10)
 vocablist.place(x=20,y=80)
@@ -509,6 +514,7 @@ def TranslateNow(event=None):
 
 			v_statusbar.set('บันทึกคำศัพท์ลงฐานข้อมูลสำเร็จ')
 			UpdateVocab()
+			CountVocab()
 		except:
 			print('Can not save')
 	global playagain
@@ -639,6 +645,12 @@ def on_click(event):
     # if clicked_tab == active_tab:
     #     Tab.forget(clicked_tab)
 
+def CountVocab():
+	count = len(allvocabdict)
+	v_countvocab.set(count)
+
+
+
 Tab.bind('<Button-1>', on_click)
 ##### STATUS BAR ####
 v_statusbar = StringVar()
@@ -648,5 +660,5 @@ statusbar.pack(side=BOTTOM, fill=X)
 
 UpdateVocab()
 print('CURRENT VOCAB: ',allvocabdict)
-
+CountVocab()
 GUI.mainloop()
