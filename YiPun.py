@@ -630,6 +630,9 @@ def on_click(event):
 
     if clicked_tab == 2:
     	E1.focus()
+    elif clicked_tab == 1:
+    	RandomFlashcard()
+
 
     # if clicked_tab == active_tab:
     #     Tab.forget(clicked_tab)
