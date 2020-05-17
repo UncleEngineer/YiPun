@@ -501,9 +501,11 @@ def TranslateNow(event=None):
 				texttrans = v_manualtrans.get()
 
 			if v_radio.get() == 'th' or v_radio.get() == 'en':
-				add_vocab([v_texttras.get(),texttrans])
+				if v_texttras.get() not in allvocabdict:
+					add_vocab([v_texttras.get(),texttrans])
 			else:
-				add_vocab([texttrans,v_texttras.get()])
+				if v_texttras.get() not in allvocabdict:
+					add_vocab([texttrans,v_texttras.get()])
 
 			v_statusbar.set('บันทึกคำศัพท์ลงฐานข้อมูลสำเร็จ')
 			UpdateVocab()
