@@ -33,7 +33,7 @@ allfolder = os.listdir()
 #############WRITE CSV IF NOT IN CURRENT FOLDER #############
 def writevocab():
 	data = [['こんにちは','สวัสดีตอนกลางวัน'],
-				['こんばんは','สวัสดีตอนบ่าย']]
+				['こんばんは','สวัสดีตอนเย็น']]
 	with open('vocab.csv','w',newline='',encoding='utf-8') as f:
 		fw = csv.writer(f)
 		fw.writerows(data)
@@ -97,7 +97,7 @@ def UpdateVocab():
 #################GOOGLE SHEET##################
 
 GUI = Tk()
-GUI.title('YiPun by Uncle Engineer')
+GUI.title('YiPun by Uncle Engineer v.0.0.1')
 GUI.geometry('1100x600+0+0')
 GUI.state('zoomed')
 try:
@@ -112,10 +112,11 @@ GUI.config(menu=menubar)
 filemenu = Menu(menubar,tearoff=0)
 # filemenu.add_command(label='Close', command=GUI.quit)
 menubar.add_cascade(label='File',menu=filemenu)
+filemenu.add_command(label='Exit',command=lambda: GUI.withdraw())
 
 vocabmenu = Menu(menubar,tearoff=0)
-vocabmenu.add_command(label='Update Vocab',command=UpdateVocab)
-vocabmenu.add_command(label='Add Vocab',command=lambda: messagebox.showinfo('Tab 3','กรุณาเลือกแท็บ 3'))
+#vocabmenu.add_command(label='Update Vocab',command=UpdateVocab)
+vocabmenu.add_command(label='Add Vocab',command=lambda x=None: (Tab.select(F3),E1.focus()))
 menubar.add_cascade(label='Vocab',menu=vocabmenu)
 
 
@@ -129,10 +130,15 @@ def UncleEngineer():
 	url = 'https://www.facebook.com/UncleEngineer'
 	webbrowser.open(url)
 
+def Documentation():
+	url = 'https://github.com/UncleEngineer/YiPun'
+	webbrowser.open(url)
+
 helpmenu = Menu(menubar,tearoff=0)
 helpmenu.add_command(label='Contact Us',command=ContactUs)
-helpmenu.add_command(label='Donate',command=ContactUs)
+helpmenu.add_command(label='Donate',command=lambda: messagebox.showinfo('Donate','Paypal: loong.wissawakorn@gmail.com\nName: Uncle Engineer'))
 helpmenu.add_command(label='Uncle Engineer',command=UncleEngineer)
+helpmenu.add_command(label='Documentation',command=Documentation)
 menubar.add_cascade(label='Help',menu=helpmenu)
 
 
@@ -661,4 +667,11 @@ statusbar.pack(side=BOTTOM, fill=X)
 UpdateVocab()
 print('CURRENT VOCAB: ',allvocabdict)
 CountVocab()
+
+# def ChangeTab(event=None):
+# 	Tab.select(F2)
+
+# GUI.bind('<F9>',ChangeTab)
+
+
 GUI.mainloop()
