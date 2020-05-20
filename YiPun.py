@@ -12,8 +12,6 @@ from threading import Thread
 
 ###############
 '''
-configfile = open("installation.txt","w")
-
 L = ["pip install gtts \n",
 	"pip install playsound \n",
 	"pip install googletrans\n",
@@ -22,7 +20,6 @@ L = ["pip install gtts \n",
 	"tab_flashcard.png \n",
 	"tab_vocab.png \n",
 	"translate.png \n",] 
-
 '''
 
 
