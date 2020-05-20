@@ -302,11 +302,11 @@ GUI.bind('<F3>',SpeakNow)
 v_vocab = StringVar()
 v_trans = StringVar()
 
-show_vocab = ttk.Label(F1, textvariable=v_vocab,font=('Angsana New',30,'bold'))
+show_vocab = ttk.Label(F1, textvariable=v_vocab,font=('Angsana New',50,'bold'))
 show_vocab.place(x=100,y=20)
 
 show_translate = ttk.Label(F1, textvariable=v_trans,font=('Angsana New',30,'bold'),foreground='green')
-show_translate.place(x=100,y=70)
+show_translate.place(x=100,y=100)
 
 v_score = StringVar()
 v_score.set('0')
