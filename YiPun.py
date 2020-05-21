@@ -560,7 +560,6 @@ def ShowTranslateManual(event=None):
 # ทำให้ปุ่มกดอ่านออกเสียงกดไม่ได้
 def disabletexttospeech(event=None):
 	EB2.config(state='disabled')
-	print('pressing')
 
 
 v_radio2 = StringVar()
@@ -604,7 +603,7 @@ EBF.pack(pady=20,ipadx=20,ipady=10)
 EB1 = ttk.Button(EBF,text='แปล',command=TranslateNow)
 EB1.grid(row=0,column=0,padx=10,ipadx=15,ipady=10)
 
-EB2 = ttk.Button(EBF,text='อ่านออกเสียง',command=SpeakNow2)
+EB2 = ttk.Button(EBF,text='อ่านออกเสียง',command=SpeakNow2, state='disable')
 EB2.grid(row=0,column=1,padx=10,ipadx=15,ipady=10)
 
 #EB3 = ttk.Button(EBF,text='อ่านออกเสียง (ความหมายญี่ปุ่น)',command=SpeakNow3)
