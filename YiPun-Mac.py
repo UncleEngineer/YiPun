@@ -21,6 +21,7 @@ python3 -m pip install googletrans
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew install portaudio
 python3 -m pip install pyaudio
+python3 -m pip install pyobjc
 --------------
 '''
 
