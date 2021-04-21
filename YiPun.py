@@ -225,8 +225,10 @@ def SpeakNow2(event=None):
 
 	if v_radio.get() == 'ja':
 		tts = gTTS(text=v_transvocab.get(), lang='ja')
+	elif v_radio.get() == 'th':
+		tts = gTTS(text=v_transvocab.get(), lang='th')
 	else:
-		tts = gTTS(text=v_texttras.get(), lang='ja')
+		tts = gTTS(text=v_transvocab.get(), lang='en')
 	
 	if playagain == True:
 		name = generatename()
@@ -492,7 +494,7 @@ v_jisho = StringVar()
 
 def TranslateNow(event=None):
 	print(v_radio.get(), v_texttras.get())
-
+	EB2.config(state='normal') # ทำให้ปุ่มอ่านออกเสียงกลับมากดได้
 	trans = Lam.translate(v_texttras.get(),dest=v_radio.get())
 	v_jisho.set(trans.text)
 	alltext = ''
@@ -555,6 +557,10 @@ def ShowTranslateManual(event=None):
 		LM2.grid(row=0,column=0)
 		E2.grid(row=1,column=0)
 
+# ทำให้ปุ่มกดอ่านออกเสียงกดไม่ได้
+def disabletexttospeech(event=None):
+	EB2.config(state='disabled')
+
 
 v_radio2 = StringVar()
 
@@ -577,6 +583,7 @@ cbtn.pack()
 v_texttras = StringVar() #เก็บสิ่งที่เราพิมพ์ไว้
 E1 = ttk.Entry(F3, textvariable = v_texttras,font=('Angsana New',20),width=70)
 E1.pack(pady=10)
+E1.bind('<KeyPress>', disabletexttospeech)
 E1.bind('<Return>',TranslateNow)
 
 FLM = Frame(F3)
@@ -596,7 +603,7 @@ EBF.pack(pady=20,ipadx=20,ipady=10)
 EB1 = ttk.Button(EBF,text='แปล',command=TranslateNow)
 EB1.grid(row=0,column=0,padx=10,ipadx=15,ipady=10)
 
-EB2 = ttk.Button(EBF,text='อ่านออกเสียง',command=SpeakNow2)
+EB2 = ttk.Button(EBF,text='อ่านออกเสียง',command=SpeakNow2, state='disable')
 EB2.grid(row=0,column=1,padx=10,ipadx=15,ipady=10)
 
 #EB3 = ttk.Button(EBF,text='อ่านออกเสียง (ความหมายญี่ปุ่น)',command=SpeakNow3)
